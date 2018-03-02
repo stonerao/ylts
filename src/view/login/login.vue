@@ -1,18 +1,18 @@
 <template>
     <div>
-        <div class="login"> 
+        <div class="login">
             <h1 class="color login-title">
                 亿览态势
             </h1>
             <div class="login-box">
                 <div class="login-box-inp">
-                    <input type="text" placeholder="请输入账号">
+                    <input type="text" placeholder="请输入账号" v-model="form.name">
                 </div>
                 <div class="login-box-inp">
-                    <input type="password" placeholder="请输入账号">
+                    <input type="password" placeholder="请输入账号" v-model="form.password">
                 </div>
                 <div class="login-box-btn ">
-                    <button class="cur">登录</button>
+                    <button class="cur" @click="submit">登录</button>
                 </div>
                 <div class="login-more overflow">
                     <router-link to="/reg" class="f-left">注册</router-link>
@@ -27,9 +27,37 @@
 
 <script>
 import Vue from "vue";
+/* 背景图 */
 import VueParticles from "vue-particles";
+import { isUserName } from "@/utils/verification/index";
 Vue.use(VueParticles);
-export default {};
+export default {
+  data() {
+    return {
+      form: {
+        name: "",
+        password: ""
+      }
+    };
+  },
+  methods: {
+    async submit() {
+      /* 验证账号是否正确 */
+      if (!isUserName(this.form.name)) {
+        this.$notify.error({
+          title: "错误",
+          message: "账号格式错误"
+        });
+        return;
+      }
+      this.$notify({
+        title: "成功",
+        message: "登录成功",
+        type: "success"
+      });
+    }
+  }
+};
 </script>
 
 <style lang="less" scoped>
