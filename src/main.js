@@ -8,6 +8,12 @@ import router from './router'
 import store from '@/vuex/index'; 
 import '@/styles/reset.css'
 import '@/mock/index'  
+import '@/utils/index'
+
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css' 
+Vue.use(ElementUI)
+
 Vue.config.productionTip = false
 axios.defaults.withCredentials = true;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
