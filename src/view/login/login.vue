@@ -53,9 +53,9 @@ export default {
         return;
       }
       setToken('this.form.nam');
-      this.$router.push("/index");
+      this.$router.push("/home");
 
-      
+
       this.$notify({
         title: "成功",
         message: "登录成功",
