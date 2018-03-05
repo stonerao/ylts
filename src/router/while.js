@@ -11,3 +11,12 @@ export let router = [
     }
 
 ]
+
+export const whileList=()=>{
+    let arr = []; 
+    router.map((x)=>{
+        arr.push(x.path)
+    })  
+    return arr
+};
+

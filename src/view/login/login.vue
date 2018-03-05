@@ -31,6 +31,8 @@ import Vue from "vue";
 import VueParticles from "vue-particles";
 import { isUserName } from "@/utils/verification/index";
 Vue.use(VueParticles);
+
+import {setToken} from '@/utils/cookie'
 export default {
   data() {
     return {
@@ -50,12 +52,18 @@ export default {
         });
         return;
       }
+      setToken('this.form.nam');
+      this.$router.push("/index");
+
+      
       this.$notify({
         title: "成功",
         message: "登录成功",
         type: "success"
       });
     }
+  },
+  mounted () { 
   }
 };
 </script>
