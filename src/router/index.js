@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import * as whileList from './while'
 import * as needList from './need'
+import * as routerNav from './router'
 Vue.use(Router);
 // 路由列表
 const routerList = [
@@ -27,7 +28,8 @@ export default new Router({
     routes: [
         ...routerList,
         ...whileList.router,
-        ...needList.router
+        ...needList.router,
+        ...routerNav.router
     ], //所有路由
     linkActiveClass: 'active'
 })
