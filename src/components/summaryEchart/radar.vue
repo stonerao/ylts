@@ -1,7 +1,6 @@
 <template>
-     
-        <div id="main"></div>
-    
+
+    <div id="homeradar" class="main-radar"></div>
 </template>
 
 <script>
@@ -46,7 +45,7 @@ export default {
             data: [
               {
                 value: [430, 1000, 2000, 350],
-                name: "指数）"
+                name: "指数"
               }
             ]
           }
@@ -55,16 +54,14 @@ export default {
     };
   },
   mounted() {
-    // 基于准备好的dom，初始化echarts实例
-    var myChart = echarts.init(document.getElementById("main"));
-    // 绘制图表
+    var myChart = echarts.init(document.getElementById("homeradar"));
     myChart.setOption(this.option);
   }
 };
 </script>
 
 <style lang="less" scoped>
-#main {
+.main-radar {
   width: 330px;
   height: 230px;
 }

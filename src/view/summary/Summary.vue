@@ -18,7 +18,7 @@
         <ul>
           <li v-for="(item,index) in attackEvent()" :key="index">
             <span> {{item.time}}</span>
-           <span> {{item.name}}</span>
+            <span> {{item.name}}</span>
           </li>
         </ul>
       </div>
@@ -26,56 +26,33 @@
         <p>Top-10攻擊</p>
         <ul>
           <li v-for="(item,index) in attackEvent()" :key="index">
-           <span> {{item.time}}</span>
-           <span> {{item.name}}</span>
+            <span> {{item.time}}</span>
+            <span> {{item.name}}</span>
           </li>
         </ul>
       </div>
     </div>
-    <!-- map -->
-    <div class="echarts" :style="style">
-      <IEcharts :option="bar" :resizable="true" @ready="onReady" @resize="onResize" @click="onClick" />
+    <div class="right">
+      <p>
+        <router-link to="/home/index">二维</router-link>
+      </p>
+      <p>
+        <router-link to="/home/world3dmap">三维</router-link>
+      </p>
     </div>
+    <!-- map --> 
+      <router-view class="echarts" ></router-view>  
   </div>
 </template>
 
 <script>
-import RadarVue from "@/components/summaryEchart/radar";
-import IEcharts from "vue-echarts-v3/src/full.js";
-import { nameMap, mapConfig } from "@/utils/map/config";
-import World from "echarts/map/json/world.json";
-IEcharts.registerMap("world", World);
-export default {
-  name: "Demo05",
-  components: {
-    IEcharts,
+import RadarVue from "@/components/summaryEchart/radar"; 
+export default { 
+  components: { 
     RadarVue
   },
   data() {
-    return {
-      loading: true,
-      style: {},
-      bar: {
-        tooltip: {
-          trigger: "item",
-          formatter: "{b}",
-          left: "center",
-          top: "top"
-        },
-        // backgroundColor: "#25499f",
-        tooltip: {
-          trigger: "item",
-          formatter: function(params) {
-            var value = (params.value + "").split(".");
-            value =
-              value[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, "$1,") +
-              "." +
-              value[1];
-            return params.seriesName + "<br/>" + params.name + " : " + value;
-          }
-        },
-        series: mapConfig
-      },
+    return {  
       nulList: [
         { name: "基础维指数", num: 0 },
         { name: "脆弱维指数", num: 0 },
@@ -85,7 +62,7 @@ export default {
       attackEvent() {
         let arr = [];
         for (let i = 0; i < 9; i++) {
-          arr.push({ time: "2018-3-6 10:49:10" ,name:"被攻擊"});
+          arr.push({ time: "2018-3-6 10:49:10", name: "被攻擊" });
         }
         return arr;
       }
@@ -102,37 +79,40 @@ export default {
       console.log(arguments);
     }
   },
-  mounted() {}
+  mounted() {},
+  destroyed(){
+    console.log(window)
+  }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-.events{
+.events {
   position: absolute;
-  bottom:10px;
-  left:10px;
-  color:#fff;
-  font-size:12px;
-  z-index:10;
-  >div{
-    margin-top:20px;
-    width:200px;
-    height:200px;
-    
-    ul{
-border-left:1px solid #eee;
-    border-top:1px solid #eee;
-    padding-top:5px;
+  bottom: 10px;
+  left: 10px;
+  color: #fff;
+  font-size: 12px;
+  z-index: 10;
+  > div {
+    margin-top: 20px;
+    width: 200px;
+    height: 200px;
+
+    ul {
+      border-left: 1px solid #eee;
+      border-top: 1px solid #eee;
+      padding-top: 5px;
     }
-    >p{
-      text-align:center;
+    > p {
+      text-align: center;
     }
-    li{
-      line-height:20px;
-      padding-left:10px;
-      display:flex;
-      justify-content:space-between;
+    li {
+      line-height: 20px;
+      padding-left: 10px;
+      display: flex;
+      justify-content: space-between;
     }
   }
 }
@@ -159,7 +139,7 @@ border-left:1px solid #eee;
   position: absolute;
   width: 100%;
   height: 100%;
-  top:0;
+  top: 0;
 }
 .wmap {
   position: fixed;
