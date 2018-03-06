@@ -51,32 +51,15 @@
 		</div>
 	
 	</div>
-  <!--<div class="conLeft">-->
-  		<!--<con-center/>
-  	<my-top/>
-  	<m-slider id="mySlider"/>-->
-      <!--
-      <el-row>
-        <el-col :span="24">
-          
-        </el-col>
-      </el-row>
-       <el-row>
-        <el-col :span="18" :offset="6">
-          
-        </el-col>
-      </el-row>-->
- <!-- </div>-->
 </template>
 
 <script>
 /*import conCenter from './linkContent/layout';
 import myTop from './top';*/
 
-import card from './card/card';
+//import card from './card/card';
 export default {
-  name: '',
-  data () {
+  /*data () {
       return {
           
       }
@@ -91,11 +74,11 @@ export default {
      
   },
   components: {
-   /* myTop,  
+    myTop,  
     mSlider,
-    conCenter*/
-   card
-  }
+    conCenter
+   //card
+  }*/
 }
 </script>
 
@@ -104,7 +87,8 @@ export default {
         width 300px
         height: 244px;*/
     .content_r{
-    	width: 620px;
+    	-webkit-flex: 1.5;
+	    flex: 1.5;
     	height: 480px;
     	float: left;
     	margin-left: 14px;
@@ -185,7 +169,7 @@ export default {
 			width: 128px;
 			height: 143px;
 			float: left;
-			background: url(../../../../../../../public/img/user.png) no-repeat center;
+			background: url(../../assets/assetsmonitor/user.png) no-repeat center;
 		}
 		.content_r .user .user_intro{
 			float: left;

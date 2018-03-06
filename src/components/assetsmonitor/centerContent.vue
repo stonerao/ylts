@@ -1,13 +1,4 @@
-<template>
-    <!--<el-col :span="18" :offset="1" id="conMainTop">
-         <div class="con-main-top" >
-             <div class="left-border"></div>
-             <v-flow class="v-flow-class"/>
-             <div class="right-border"></div>
-             <div class="bottom-border"></div>
-             <v-bottom/>
-         </div>        
-     </el-col>-->
+<template>  
     <div class="content_c">
     	 <div class="con-main-center">
      		<div class="column">资产监控</div>      		
@@ -32,16 +23,11 @@
 <script>
 //import flow from './topCharts/flow/flow';
 //import bottom from './topCharts/flow/flowBottom/bottom';
-import center from './centerPanel/main';
+//import center from './centerPanel/main';
 //import anime from 'animejs';
 export default {
-  name: 'centerContent',
-  components: {
-      //'v-flow': flow,
-      /*'v-bottom': bottom,*/
-      'v-cetner': center
-  },
-  mounted () {
+  
+ /* mounted () {
       anime({
       targets: '#conMainTop ',
       scale: 1.06,
@@ -54,7 +40,7 @@ export default {
         return i * 100;
       }
 })
-  }
+  }*/
 }
 </script>
 
@@ -83,18 +69,20 @@ export default {
         height 2px
         background-color #006070;*/
     .content_c{
-    	width:770px;
-    	height: 480px;
+    	-webkit-flex: 2;
+	    flex: 2;
+	    min-height: 480px;
     	float: left;
     	margin-left: 10px;
        	margin-top: 14px;
     }   
     .con-main-center{
-    	width:770px;
-        height: 360px;
+    	width:100%;
+        min-height: 360px;
        	position: relative;
        	float: left;
-       	background:url(../../../../../../../public/img/bg_zc.png) no-repeat;
+       	background:url(../../assets/assetsmonitor/bg_zc.png) no-repeat ;
+       	background-size:100% 100%;
     }
     .con-main-center .column{
     	position: absolute;
@@ -106,11 +94,11 @@ export default {
 		height:56px;
 		line-height: 56px;
 		text-align:center;
-		background: url(../../../../../../../public/img/column.png) no-repeat;
+		/*background: url(../../assets/assetsmonitor/column.png) no-repeat;*/
 		z-index: 99;
     }
     .content_c .day{
-    	width: 380px;
+    	width: 49%;
     	height: 100px;
     	background: #012439;
     	box-sizing: border-box;
@@ -120,12 +108,12 @@ export default {
     	margin-right: 10px;
     }
     .content_c .evaluate{
-    	width: 380px;
+    	width: 49%;
     	height: 100px;
     	background: #2e6e5e;
     	box-sizing: border-box;
     	padding: 20px 30px;
-    	float: left;
+    	float: right;
     	margin-top: 15px;
     }
     .content_c .day p,.content_c .evaluate p{

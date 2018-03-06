@@ -7,40 +7,27 @@
   			<span class="typeface">服务分类及其异常比例</span>
   		</div>
   		<ul class="left_list">
+  			<!--<li><v-block/></li>
   			<li><v-block/></li>
   			<li><v-block/></li>
   			<li><v-block/></li>
   			<li><v-block/></li>
   			<li><v-block/></li>
   			<li><v-block/></li>
-  			<li><v-block/></li>
-  			<li><v-block/></li>
+  			<li><v-block/></li>-->
   		</ul>
   	</div>
-   <!-- <el-row class="con">
-          <v-block class="first-line block "/>
-          <v-block class="first-line block "/>
-          <v-block class="block  first-line second-line"/>
-          <v-block class="block  first-line second-line"/>
-          <v-block class="block  first-line second-line"/>
-          <v-block class="block  first-line second-line"/>
-          <v-block class="block  first-line second-line"/>
-          <v-block class="block  first-line second-line"/>
-          <v-block class="block  first-line second-line"/>
-          <v-block class="block  first-line second-line"/>
-   </el-row>-->
 </template>
 
 <script>
-import block from './block';
-import anime from 'animejs';
+//import block from './block';
+//import anime from 'animejs';
 export default {
-  name: 'leftContent',
-  components: {
+/*  components: {
     'v-block': block
-  },
+  },*/
   methods: {
-    startAnimation2(){
+    /*startAnimation2(){
       console.log('aa');
       
       let animation1 =  anime({
@@ -60,10 +47,10 @@ export default {
         return (i * 300)
       }
 })
-    }
+    }*/
   },
   mounted () {
-  let self = this  
+  /*let self = this  
   let animation1 =  anime({
         targets: ' .block',
         translateX: function(el,i,l){
@@ -82,7 +69,7 @@ export default {
           return (i * 200)+1200;
         }
   })
-
+*/
   }
 }
 </script>
@@ -109,8 +96,9 @@ export default {
     position: relative;
     border: 2px solid #008dce;
     box-sizing: border-box;
-    width: 380px;
-    height: 480px;
+    -webkit-flex: 1;
+    flex: 1;
+   height: 474px;
     margin-top: 14px;
     float: left;
 }
