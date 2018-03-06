@@ -1,45 +1,68 @@
 <template>
-    <div class="wmap">
-        <div class="echarts" :style="style">
-
-            <IEcharts :option="map" theme="macarons" :resizable="true"/>
-        </div>
-
-        <div class="right">
-            <p>
-                <router-link to="/home/">二维</router-link>
-            </p>
-            <p>
-                <router-link to="/home/world3dmap">三维</router-link>
-            </p>
-        </div>
+  <div class="wmap">
+    <!-- 指数展示 -->
+    <ul class="numlist">
+      <li v-for="(item,index) in nulList" :key="index" :data-id="index">
+        <p>{{item.name}}</p>
+        <p>{{item.num}}</p>
+      </li>
+    </ul>
+    <!-- 指数表 -->
+    <div class="RadarVue">
+      <RadarVue/>
     </div>
+    <!-- 攻擊事件 -->
+    <div class="events">
+      <div>
+        <p>Top-10事件</p>
+        <ul>
+          <li v-for="(item,index) in attackEvent()" :key="index">
+            <span> {{item.time}}</span>
+           <span> {{item.name}}</span>
+          </li>
+        </ul>
+      </div>
+      <div>
+        <p>Top-10攻擊</p>
+        <ul>
+          <li v-for="(item,index) in attackEvent()" :key="index">
+           <span> {{item.time}}</span>
+           <span> {{item.name}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- map -->
+    <div class="echarts" :style="style">
+      <IEcharts :option="bar" :resizable="true" @ready="onReady" @resize="onResize" @click="onClick" />
+    </div>
+  </div>
 </template>
 
 <script>
-import { nameMap, mapConfig } from "@/utils/map/config";
-
+import RadarVue from "@/components/summaryEchart/radar";
 import IEcharts from "vue-echarts-v3/src/full.js";
+import { nameMap, mapConfig } from "@/utils/map/config";
 import World from "echarts/map/json/world.json";
-import "echarts/theme/macarons.js";
 IEcharts.registerMap("world", World);
 export default {
+  name: "Demo05",
   components: {
-    IEcharts
+    IEcharts,
+    RadarVue
   },
   data() {
-    // const that = this
     return {
-      ins: null,
+      loading: true,
       style: {},
-      map: {
+      bar: {
         tooltip: {
           trigger: "item",
           formatter: "{b}",
           left: "center",
           top: "top"
         },
-        backgroundColor: "#25499f",
+        // backgroundColor: "#25499f",
         tooltip: {
           trigger: "item",
           formatter: function(params) {
@@ -53,28 +76,97 @@ export default {
         },
         series: mapConfig
       },
-      loading: true
+      nulList: [
+        { name: "基础维指数", num: 0 },
+        { name: "脆弱维指数", num: 0 },
+        { name: "威胁维指数", num: 0 },
+        { name: "综合维指数", num: 0 }
+      ],
+      attackEvent() {
+        let arr = [];
+        for (let i = 0; i < 9; i++) {
+          arr.push({ time: "2018-3-6 10:49:10" ,name:"被攻擊"});
+        }
+        return arr;
+      }
     };
   },
-  methods: {},
+  methods: {
+    onReady(ins) {
+      console.dir(ins);
+    },
+    onResize(width, height) {
+      console.log(width, height);
+    },
+    onClick(event, instance, echarts) {
+      console.log(arguments);
+    }
+  },
   mounted() {}
 };
 </script>
 
-<style>
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped lang="less">
+.events{
+  position: absolute;
+  bottom:10px;
+  left:10px;
+  color:#fff;
+  font-size:12px;
+  z-index:10;
+  >div{
+    margin-top:20px;
+    width:200px;
+    height:200px;
+    
+    ul{
+border-left:1px solid #eee;
+    border-top:1px solid #eee;
+    padding-top:5px;
+    }
+    >p{
+      text-align:center;
+    }
+    li{
+      line-height:20px;
+      padding-left:10px;
+      display:flex;
+      justify-content:space-between;
+    }
+  }
+}
+.numlist {
+  overflow: hidden;
+  position: absolute;
+  left: 15px;
+  li {
+    float: left;
+    text-align: center;
+    line-height: 24px;
+    height: 60px;
+    padding: 0 15px;
+    color: #fff;
+  }
+}
+.RadarVue {
+  position: absolute;
+  color: #fff;
+  right: 20px;
+  z-index: 5;
+}
 .echarts {
+  position: absolute;
   width: 100%;
   height: 100%;
+  top:0;
 }
 .wmap {
   position: fixed;
-  top: 0;
+  top: 95px;
   right: 0;
   left: 0;
   bottom: 0;
-}
-.wmap div {
-  position: relative;
 }
 .wmap div.right {
   position: absolute;
@@ -82,7 +174,7 @@ export default {
   right: 0px;
   width: 100px;
   height: 140px;
-  z-index: 1000;
+  z-index: 1;
   background-color: rgba(218, 207, 207, 0.1);
 }
 .right p {
