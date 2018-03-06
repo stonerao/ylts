@@ -7,12 +7,8 @@
 <script>
 // 引入 ECharts 主模块
 var echarts = require("echarts/lib/echarts");
-// 引入柱状图
-require("echarts/lib/chart/bar");
-// 引入提示框和标题组件
-require("echarts/lib/component/tooltip");
-require("echarts/lib/component/title");
-
+require("echarts-gl");
+import { barS } from "@/utils/map/config";
 export default {
   components: {},
   data() {
@@ -20,9 +16,8 @@ export default {
   },
   methods: {},
   mounted() {
-    // 基于准备好的dom，初始化echarts实例
+    var option = {};
     var myChart = echarts.init(document.getElementById("map3d"));
-    // 绘制图表
     var canvas = document.createElement("canvas");
     var mapChart = echarts.init(canvas, null, {
       width: 4096,
@@ -247,12 +242,10 @@ export default {
     option = {
       globe: {
         baseTexture: mapChart,
-        heightTexture: "data-gl/asset/bathymetry_bw_composite_4k.jpg",
-
+        heightTexture:
+          "http://echarts.baidu.com/examples/data-gl/asset/bathymetry_bw_composite_4k.jpg",
         displacementScale: 0.1,
-
         shading: "lambert",
-
         light: {
           ambient: {
             intensity: 0.5
@@ -261,13 +254,15 @@ export default {
             intensity: 0.6
           }
         },
-
+    show:true,
         viewControl: {
           autoRotate: false
         }
       },
       series: []
     };
+
+    myChart.setOption(option);
   }
 };
 </script>

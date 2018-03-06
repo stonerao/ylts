@@ -29,7 +29,7 @@ module.exports = {
         assetsPublicPath: '/',
         proxyTable: {
             //设置需要跨域的地址
-            '/api': 'http://stonerao.com/'
+            '/examples': 'http://echarts.baidu.com/', 
         },
         // CSS Sourcemaps off by default because relative paths are "buggy"
         // with this option, according to the CSS-Loader README
