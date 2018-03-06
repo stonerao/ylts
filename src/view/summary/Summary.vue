@@ -37,7 +37,7 @@
         <router-link to="/home/index">二维</router-link>
       </p>
       <p>
-        <router-link to="/home/world3dmap">三维</router-link>
+        <router-link to="/home/map3d">三维</router-link>
       </p>
     </div>
     <!-- map --> 
